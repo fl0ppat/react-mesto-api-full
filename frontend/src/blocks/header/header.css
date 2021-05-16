@@ -1,0 +1,13 @@
+.header {
+  display: flex;
+  place-content: space-between;
+  padding-top: 45px;
+  border-bottom: 1px solid #545454;
+  margin: 0 10%;
+}
+
+@media screen and (max-width: 450px) {
+  .header {
+    padding-top: 28px;
+  }
+}

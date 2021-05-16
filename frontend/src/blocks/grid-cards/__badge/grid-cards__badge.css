@@ -1,0 +1,6 @@
+.grid-cards__badge {
+  position: relative;
+  margin: 23px 20px 26px;
+  display: flex;
+  justify-content: space-between;
+}

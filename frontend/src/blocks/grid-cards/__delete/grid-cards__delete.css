@@ -1,0 +1,25 @@
+.grid-cards__delete {
+  position: absolute;
+  background-image: url(./Trash.svg);
+  background-repeat: no-repeat;
+  max-width: 19.3px;
+  width: 100%;
+  max-height: 18px;
+  height: 100%;
+  transition: .3s;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+  top: 18px;
+  right: 15px;
+}
+
+.grid-cards__delete:focus {
+  border: 0;
+  outline: none;
+}
+
+.grid-cards__delete:hover {
+  opacity: .6;
+}

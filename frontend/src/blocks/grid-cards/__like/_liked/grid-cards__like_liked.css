@@ -1,0 +1,4 @@
+.grid-cards__like_liked {
+  background-image: url('./liked.svg');
+  background-repeat: no-repeat;
+}

@@ -1,0 +1,14 @@
+.profile__change-icon {
+  opacity: 0;
+  background-color: rgba(0, 0, 0, .6);
+  background-image: url(./Vector.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  min-height: inherit;
+  transition: opacity .3s;
+  border-radius: inherit;
+}
+
+.profile__change-icon:hover {
+  opacity: 1;
+}

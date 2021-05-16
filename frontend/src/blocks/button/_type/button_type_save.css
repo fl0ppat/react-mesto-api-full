@@ -1,0 +1,33 @@
+  .button_type_save {
+    max-width: 360px;
+    min-height: 50px;
+    width: 100%;
+    margin: 36px auto 37px;
+    border: 0;
+    font-size: 1.125rem;
+    position: relative;
+    border-radius: 2px;
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color .3s;
+  }
+  
+  @media screen and (max-width: 450px) {
+    .button_type_save {
+      margin: 38px auto 25px;
+      min-height: 46px;
+      max-width: 238px;
+      font-size: 0.875rem;
+    }
+  }
+  
+  .button_type_save:hover {
+    background-color: rgba(0, 0, 0, .8);
+  }
+  
+  .button_type_save:focus {
+    outline: 0;
+    border-radius: 0;
+    border: 0;
+  }

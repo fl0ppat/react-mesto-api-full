@@ -1,0 +1,23 @@
+.grid-cards__like {
+  background-image: url('./like.svg');
+  color: #000;
+  max-width: 20.76px;
+  width: 100%;
+  min-height: 18px;
+  margin: auto;
+  transition: .3s;
+  cursor: pointer;
+  border: 0;
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+  background-repeat: no-repeat;
+}
+
+.grid-cards__like:focus {
+  border: 0;
+  outline: none;
+}
+
+.grid-cards__like:hover {
+  opacity: .6;
+}

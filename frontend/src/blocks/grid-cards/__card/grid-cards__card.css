@@ -1,0 +1,6 @@
+.grid-cards__card {
+  display: block;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+}

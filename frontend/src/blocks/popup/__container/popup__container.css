@@ -1,0 +1,18 @@
+.popup__container {
+  max-width: fit-content;
+  min-width: fit-content;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding: 0 0 0;
+  border-radius: 5px;
+  position: relative;
+}
+
+@media screen and (max-width: 450px) {
+  .popup__container {
+    width: 88%;
+    margin: 94px auto 0px;
+  }
+}

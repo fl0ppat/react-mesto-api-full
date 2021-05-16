@@ -1,0 +1,7 @@
+.popup__container-tooltip {
+  background-color: white;
+  color: black;
+  min-height: 330px;
+  min-width: 430px;
+  text-align: center;
+}

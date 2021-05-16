@@ -1,0 +1,9 @@
+.sign-form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 360px;
+  min-width: 260px;
+  width: 100%;
+  min-height: 65vh;
+}

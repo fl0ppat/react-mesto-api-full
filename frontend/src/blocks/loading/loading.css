@@ -1,0 +1,9 @@
+.loading {
+  background-image: url(./loading.webp);
+  background-repeat: no-repeat;
+  min-height: 128px;
+  display: flex;
+  background-position: center;
+  padding-top: 52px;
+
+}

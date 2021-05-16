@@ -1,0 +1,33 @@
+.profile__edit {
+  width: 24px;
+  height: 24px;
+  background-image: url(./Edit.svg);
+  background-size: 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #000;
+  border: 1px solid #fff;
+  border-radius: 0;
+  margin-left: 14px;
+  transition: opacity 0.3s;
+  cursor: pointer;
+  margin: 15px 19px 0px;
+}
+
+@media screen and (max-width: 450px) {
+  .profile__edit {
+    width: 18px;
+    height: 18px;
+    margin: 36px 0px 0px 0px;
+  }
+}
+
+.profile__edit:hover {
+  opacity: .6;
+}
+
+.profile__edit:focus {
+  border-radius: 0;
+  border: 1px solid #fff;
+  outline: none;
+}
