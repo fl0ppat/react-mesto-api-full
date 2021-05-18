@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config()
 const { isCelebrateError } = require('celebrate');
 const NotFoundError = require('./errors/NotFound');
 const handleError = require('./middlewares/errors');
@@ -21,7 +22,7 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 app.use(express.json());
 app.use(cors({
   credentials: true, 
-  origin: 'http://localhost:3000'
+  origin: 'https://fl0ppat.nomoredomains.club'
 }))
 app.use(requestLogger);
 

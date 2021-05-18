@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const User = require('../models/user');
 const NotFoundError = require('../errors/NotFound');
 const ConflictError = require('../errors/Conflict');
@@ -94,7 +96,7 @@ module.exports.login = (req, res, next) => {
       }
       return res.status(200).cookie(
         '_id',
-        jwt.sign(_id.toJSON(), '12345'),
+        jwt.sign(_id.toJSON(), NODE_ENV === 'production' ? JWT_SECRET : '12345'),
         { maxAge: 604800000, /* 7days */ httpOnly: true },
       ).status(200).send({ mesage: 'Вход выполнен' });
     })
