@@ -25,6 +25,11 @@ app.use(cors({
   origin: 'https://fl0ppat.nomoredomains.club'
 }))
 app.use(requestLogger);
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.use(require('./routers/auth'));
 
