@@ -1,17 +1,17 @@
-import React from "react";
-import InfoTooltip from "./InfoTooltip";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import InfoTooltip from './InfoTooltip';
 
 class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tooltipIsOpen: false,
-      password: "",
-      email: "",
-      text: "",
-      status: "",
-      path: "",
+      password: '',
+      email: '',
+      text: '',
+      status: '',
+      path: '',
     };
     this.handleCloseTooltip = this.handleCloseTooltip.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -44,13 +44,13 @@ class Register extends React.Component {
     this.props
       .handleRegister(this.state.password, this.state.email)
       .then((res) => {
-        this.handleDataForTooltip(true, "Вы успешно зарегистрировались!");
-        this.setState({ path: "/sign-in" });
+        this.handleDataForTooltip(true, 'Вы успешно зарегистрировались!');
+        this.setState({ path: '/sign-in' });
         this.openTooltip(true, res);
       })
       .catch(() => {
-        this.handleDataForTooltip(false, "Что-то пошло не так! Попробуйте ещё раз.");
-        this.setState({ path: "/sign-up" });
+        this.handleDataForTooltip(false, 'Что-то пошло не так! Попробуйте ещё раз.');
+        this.setState({ path: '/sign-up' });
         this.openTooltip();
       });
   }

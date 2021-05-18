@@ -37,15 +37,18 @@ function App() {
   const [selectedCard, selectCard] = useState({});
 
   useEffect(
-    () =>
-      api
+    
+    () => {
+      if(loggedIn) {
+        api
         .getUserData()
         .then((data) => {
           setCurrentUser(data);
         })
-        .catch((err) => console.error(err)),
-    []
-  );
+        .catch((err) => console.error(err))
+      }
+      },
+    []);
 
   useEffect(() => {
     if (loggedIn) {
@@ -93,10 +96,13 @@ function App() {
   }
 
   useEffect(() => {
-    api
+    if(loggedIn) {
+      api
       .getInitialCards()
       .then((data) => setCards(data.reverse()))
       .catch(() => console.error(`Cards loading Error`));
+    }
+    
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -134,20 +140,20 @@ function App() {
       .updateAvatar(link)
       .then((user) => {
         setCurrentUser(user);
-        closeAllPopups();
       })
-      .catch(console.error("Ошибка установки аватара"));
+      .catch((err) => {console.error("Ошибка установки аватара")})
+      .finally(closeAllPopups());
   };
 
   const handleAddPlaceSubmit = (name, link) => {
-    console.log(name, link);
     api
       .addNewCard(name, link)
       .then((card) => {
         setCards([card, ...cards]);
-        closeAllPopups();
+
       })
-      .catch(console.error("Ошибка добавления карточки"));
+      .catch((err) => {console.error("Ошибка добавления карточки")})
+      .finally(closeAllPopups());
   };
 
   const getUserAuthData = () => auth.getUserData().then((res) => {
@@ -161,11 +167,20 @@ function App() {
     setEmail("");
     closeAllPopups()
     setLoggedIn(false);
-    setCurrentUser({});
+    setCards(null)
+    setCurrentUser({
+      name: "",
+      about: "",
+      avatar: "",
+    });
   };
   const onLogin = (token) => {
     window.localStorage.setItem("id", token);
     getUserAuthData();
+    api
+      .getInitialCards()
+      .then((data) => setCards(data.reverse()))
+      .catch(() => console.error(`Cards loading Error`));
 
   };
 

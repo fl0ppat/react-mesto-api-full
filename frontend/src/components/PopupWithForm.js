@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 /**
  * Component for showing different popups with forms.
@@ -31,7 +31,7 @@ function PopupWithForm(props) {
         <form onSubmit={props.onSubmit} className="popup__form" name={props.name}>
           <h2 className="popup__title">{props.title}</h2>
           {props.children}
-          <button className={`button button_type_save ${!props.btnIsActive && "button_type_inactive"}`} type="submit">
+          <button className={`button button_type_save ${!props.btnIsActive && 'button_type_inactive'}`} type="submit">
             {props.btnName}
           </button>
         </form>

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import PopupWithForm from "./PopupWithForm";
-import CurrentUserContext from "../contexts/CurrentUserContext";
+import React, { useContext, useEffect, useState } from 'react';
+import PopupWithForm from './PopupWithForm';
+import CurrentUserContext from '../contexts/CurrentUserContext';
 
 export default function EditProfilePopup(props) {
   const user = useContext(CurrentUserContext);
@@ -35,7 +35,7 @@ export default function EditProfilePopup(props) {
         isOpen={props.isOpen}
         closeCallback={props.closeCallback}
         onSubmit={handleSubmit}
-        btnIsActive={true}
+        btnIsActive
         name="dataEdit"
         title="Редактировать профиль"
         btnName="Сохранить"

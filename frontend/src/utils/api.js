@@ -1,4 +1,4 @@
-import {apiURL} from "./utils.js";
+import { apiURL } from './utils.js';
 
 class Api {
   /**
@@ -18,76 +18,66 @@ class Api {
   }
 
   getInitialCards() {
-    return this._sendRequest("GET", `${this._baseURL}/cards`).then((res) => this._handleResponseStatus(res));
+    return this._sendRequest('GET', `${this._baseURL}/cards`).then((res) => this._handleResponseStatus(res));
   }
 
   getUserData() {
-    return this._sendRequest("GET", `${this._baseURL}/users/me`).then((res) =>
-      this._handleResponseStatus(res)
-    );
+    return this._sendRequest('GET', `${this._baseURL}/users/me`).then((res) => this._handleResponseStatus(res));
   }
 
   editProfileData(name, about) {
     return this._sendRequest(
-      "PATCH",
+      'PATCH',
       `${this._baseURL}/users/me`,
-      { "Content-Type": "application/json" },
-      { name: name, about: about }
+      { 'Content-Type': 'application/json' },
+      { name, about },
     ).then((res) => this._handleResponseStatus(res));
   }
 
   addNewCard(name, link) {
     return this._sendRequest(
-      "POST",
+      'POST',
       `${this._baseURL}/cards`,
-      { "Content-Type": "application/json" },
-      { name: name, link }
+      { 'Content-Type': 'application/json' },
+      { name, link },
     ).then((res) => this._handleResponseStatus(res));
   }
 
   deleteCard(id) {
-    return this._sendRequest("DELETE", `${this._baseURL}/cards/${id}`).then((res) =>
-      this._handleResponseStatus(res)
-    );
+    return this._sendRequest('DELETE', `${this._baseURL}/cards/${id}`).then((res) => this._handleResponseStatus(res));
   }
 
   sendLike(id) {
-    return this._sendRequest("PUT", `${this._baseURL}/cards/${id}/likes`).then((res) =>
-      this._handleResponseStatus(res)
-    );
+    return this._sendRequest('PUT', `${this._baseURL}/cards/${id}/likes`).then((res) => this._handleResponseStatus(res));
   }
 
   delLike(id) {
-    return this._sendRequest("DELETE", `${this._baseURL}/cards/${id}/likes`).then((res) =>
-      this._handleResponseStatus(res)
-    );
+    return this._sendRequest('DELETE', `${this._baseURL}/cards/${id}/likes`).then((res) => this._handleResponseStatus(res));
   }
 
   updateAvatar(link) {
     return this._sendRequest(
-      "PATCH",
+      'PATCH',
       `${this._baseURL}/users/me/avatar`,
-      { "Content-Type": "application/json" },
-      { avatar: link }
+      { 'Content-Type': 'application/json' },
+      { avatar: link },
     ).then((res) => this._handleResponseStatus(res));
   }
 
   _handleResponseStatus(res) {
     if (res.ok) {
       return res.json();
-    } else {
-      console.error(`Ошибка: ${res.errors}`);
-
-      return Promise.reject(`Ошибка: ${res.status}`);
     }
+    console.error(`Ошибка: ${res.errors}`);
+
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   _objectIsEmptyOrUndefined(obj) {
-    if (obj === "undefined") {
+    if (obj === 'undefined') {
       return true;
-    } else {
-      return obj && Object.keys(obj).length === 0;
     }
+    return obj && Object.keys(obj).length === 0;
   }
 
   /**
@@ -102,7 +92,7 @@ class Api {
    */
   _sendRequest(method, url, headers, body) {
     const reqHeader = {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -111,9 +101,9 @@ class Api {
     }
 
     const fetchData = {
-      method: method,
+      method,
       headers: reqHeader,
-      credentials: 'include'
+      credentials: 'include',
     };
 
     if (body && !this._objectIsEmptyOrUndefined(body)) {

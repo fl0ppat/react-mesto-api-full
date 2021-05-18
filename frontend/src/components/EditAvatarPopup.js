@@ -1,5 +1,5 @@
-import React from "react";
-import PopupWithForm from "./PopupWithForm";
+import React from 'react';
+import PopupWithForm from './PopupWithForm';
 
 export default class EditAvatarPopup extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ export default class EditAvatarPopup extends React.Component {
   }
 
   handleClose() {
-    this.ref.current.value = "";
+    this.ref.current.value = '';
     this.props.closeCallback();
   }
 
@@ -26,7 +26,7 @@ export default class EditAvatarPopup extends React.Component {
           isOpen={this.props.isOpen}
           closeCallback={this.handleClose}
           onSubmit={this.handleSubmit}
-          btnIsActive={true}
+          btnIsActive
           name="updateAvatar"
           title="Обновить аватар?"
           btnName="Да"

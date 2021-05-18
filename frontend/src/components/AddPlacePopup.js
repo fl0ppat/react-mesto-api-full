@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import PopupWithForm from "./PopupWithForm";
+import React, { useState } from 'react';
+import PopupWithForm from './PopupWithForm';
 
 export default function AddPlacePopup(props) {
-  const [cardName, setCardName] = useState("");
-  const [cardLink, setCardLink] = useState("");
+  const [cardName, setCardName] = useState('');
+  const [cardLink, setCardLink] = useState('');
 
   function handleInputName(e) {
     setCardName(e.target.value);
@@ -19,8 +19,8 @@ export default function AddPlacePopup(props) {
   }
 
   function handleClose() {
-    setCardName("");
-    setCardLink("");
+    setCardName('');
+    setCardLink('');
     props.closeCallback();
   }
 
@@ -32,7 +32,7 @@ export default function AddPlacePopup(props) {
       name="addCard"
       title="Новое место"
       btnName="Сохранить"
-      btnIsActive={true}
+      btnIsActive
     >
       <input
         id="title-input"

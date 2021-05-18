@@ -1,9 +1,11 @@
-import React, { useState, useContext } from "react";
-import CurrentUserContext from "../contexts/CurrentUserContext";
-import Card from "./Card";
+import React, { useState, useContext } from 'react';
+import CurrentUserContext from '../contexts/CurrentUserContext';
+import Card from './Card';
 
 function Main(props) {
-  const { onEditProfile, onUpdateAvatar, onAddCard, onOpenFull, onCardSelect } = props;
+  const {
+    onEditProfile, onUpdateAvatar, onAddCard, onOpenFull, onCardSelect,
+  } = props;
   const currentUser = useContext(CurrentUserContext);
 
   const [isPreloading] = useState({
@@ -16,17 +18,14 @@ function Main(props) {
   }
 
   function isLiked(cardLikes) {
-    
-    return cardLikes.some((like) => {
-      return like === currentUser._id;
-    });
+    return cardLikes.some((like) => like === currentUser._id);
   }
 
   return (
     <main>
       <section className="profile">
         <div
-          className={isPreloading.profile ? "profile__avatar skeleton" : "profile__avatar"}
+          className={isPreloading.profile ? 'profile__avatar skeleton' : 'profile__avatar'}
           onClick={() => onUpdateAvatar(true)}
           style={{ backgroundImage: `url(${currentUser.avatar})` }}
         >
@@ -34,10 +33,10 @@ function Main(props) {
         </div>
         <div className="profile__info">
           <div className="profile__wrapper">
-            <h1 className={isPreloading.profile ? "profile__name skeleton" : "profile__name"}>{currentUser.name}</h1>
+            <h1 className={isPreloading.profile ? 'profile__name skeleton' : 'profile__name'}>{currentUser.name}</h1>
             <button type="button" className="profile__edit" onClick={() => onEditProfile()} />
           </div>
-          <p className={isPreloading.profile ? "profile__subtitle skeleton" : "profile__subtitle"}>
+          <p className={isPreloading.profile ? 'profile__subtitle skeleton' : 'profile__subtitle'}>
             {currentUser.about}
           </p>
         </div>
@@ -53,7 +52,7 @@ function Main(props) {
               name={card.name}
               likesAmount={card.likes.length}
               isLiked={isLiked(card.likes)}
-              isAuthor={isAuthor(card.owner._id)}
+              isAuthor={isAuthor(card.owner)}
               openFull={onOpenFull}
               onCardLike={() => props.onCardLike(card)}
               onCardDelete={() => props.onCardDelete(card._id)}

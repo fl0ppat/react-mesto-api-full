@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
 function ImagePopup(props) {
   return (
-    <section className={props.isOpen ? `popup popup_opened` : `popup`}>
+    <section className={props.isOpen ? 'popup popup_opened' : 'popup'}>
       <div className="popup__container">
         <button
           type="button"

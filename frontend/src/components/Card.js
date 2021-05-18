@@ -1,7 +1,6 @@
-import React from "react";
+import React from 'react';
 
 function Card(props) {
-
   function handleCardClick() {
     props.selectCard();
     props.openFull(true);
@@ -11,7 +10,7 @@ function Card(props) {
     <li className="grid-cards__card">
       <img src={props.link} alt={props.name} onClick={() => handleCardClick()} className="grid-cards__img" />
       {props.isAuthor && (
-        <button type="button" className="grid-cards__delete" onClick={() => props.onCardDelete()}></button>
+        <button type="button" className="grid-cards__delete" onClick={() => props.onCardDelete()} />
       )}
 
       <div className="grid-cards__badge">
@@ -20,8 +19,8 @@ function Card(props) {
           <button
             onClick={() => props.onCardLike()}
             type="button"
-            className={props.isLiked ? "grid-cards__like grid-cards__like_liked" : "grid-cards__like"}
-          ></button>
+            className={props.isLiked ? 'grid-cards__like grid-cards__like_liked' : 'grid-cards__like'}
+          />
           <p className="grid-cards__like-counter">{props.likesAmount}</p>
         </div>
       </div>

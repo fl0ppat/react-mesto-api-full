@@ -1,4 +1,4 @@
-import {apiURL} from './utils.js'
+import { apiURL } from './utils.js';
 
 class Auth {
   /**
@@ -12,45 +12,43 @@ class Auth {
   }
 
   getUserData() {
-    return this._sendRequest("GET", `${this._baseURL}/users/me`, {
-      "Content-Type": "application/json",
+    return this._sendRequest('GET', `${this._baseURL}/users/me`, {
+      'Content-Type': 'application/json',
     }).then((res) => this._handleResponseStatus(res));
   }
 
   registerUser(password, email) {
     return this._sendRequest(
-      "POST",
+      'POST',
       `${this._baseURL}/signup`,
-      { "Content-Type": "application/json" },
-      { password: password, email: email }
+      { 'Content-Type': 'application/json' },
+      { password, email },
     ).then((res) => this._handleResponseStatus(res));
   }
 
   loginUser(password, email) {
     return this._sendRequest(
-      "POST",
+      'POST',
       `${this._baseURL}/signin`,
-      { "Content-Type": "application/json" },
-      { password: password, email: email }
+      { 'Content-Type': 'application/json' },
+      { password, email },
     ).then((res) => this._handleResponseStatus(res));
   }
 
   _handleResponseStatus(res) {
     if (res.ok) {
       return res.json();
-    } else {
-      console.error(`Ошибка: ${res.errors}`);
-
-      return Promise.reject(`Ошибка: ${res.status}`);
     }
+    console.error(`Ошибка: ${res.errors}`);
+
+    return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   _objectIsEmptyOrUndefined(obj) {
-    if (obj === "undefined") {
+    if (obj === 'undefined') {
       return true;
-    } else {
-      return obj && Object.keys(obj).length === 0;
     }
+    return obj && Object.keys(obj).length === 0;
   }
 
   /**
@@ -65,7 +63,7 @@ class Auth {
    */
   _sendRequest(method, url, headers, body) {
     const reqHeader = {
-      'Accept': 'application/json',
+      Accept: 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded',
     };
 
@@ -74,9 +72,9 @@ class Auth {
     }
 
     const fetchData = {
-      method: method,
+      method,
       headers: reqHeader,
-      credentials: 'include'
+      credentials: 'include',
     };
 
     if (body && !this._objectIsEmptyOrUndefined(body)) {

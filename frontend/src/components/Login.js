@@ -1,16 +1,16 @@
-import React from "react";
-import InfoTooltip from "./InfoTooltip";
+import React from 'react';
+import InfoTooltip from './InfoTooltip';
 
 class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       tooltipIsOpen: false,
-      password: "",
-      email: "",
-      text: "",
+      password: '',
+      email: '',
+      text: '',
       status: true,
-      path: "",
+      path: '',
     };
     this.handleCloseTooltip = this.handleCloseTooltip.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -49,14 +49,14 @@ class Login extends React.Component {
     this.props
       .handleLogin(this.state.password, this.state.email)
       .then((res) => {
-        this.handleDataForTooltip(true, "Добро пожаловать!");
+        this.handleDataForTooltip(true, 'Добро пожаловать!');
         this.props.onLogin(res.token);
-        this.setState({ path: "/" });
+        this.setState({ path: '/' });
         this.openTooltip(true, res);
       })
       .catch(() => {
-        this.handleDataForTooltip(false, "Что-то пошло не так! Попробуйте ещё раз.");
-        this.setState({ path: "/sign-in" });
+        this.handleDataForTooltip(false, 'Что-то пошло не так! Попробуйте ещё раз.');
+        this.setState({ path: '/sign-in' });
         this.openTooltip();
       });
   }

@@ -1,7 +1,7 @@
-import React from "react";
-import ok from "../images/ok.svg";
-import error from "../images/error.svg";
-import { useHistory } from "react-router";
+import React from 'react';
+import { useHistory } from 'react-router';
+import ok from '../images/ok.svg';
+import error from '../images/error.svg';
 
 function InfoTooltip(props) {
   const history = useHistory();
@@ -12,7 +12,7 @@ function InfoTooltip(props) {
   }
 
   return (
-    <section className={props.isOpen ? `popup popup_opened` : `popup`}>
+    <section className={props.isOpen ? 'popup popup_opened' : 'popup'}>
       <div className="popup__container popup__container-tooltip">
         <button
           type="button"

@@ -1,6 +1,8 @@
-import React from "react";
-import { withRouter, Link, Switch, Route } from "react-router-dom";
-import logo from "../images/header-logo.svg";
+import React from 'react';
+import {
+  withRouter, Link, Switch, Route,
+} from 'react-router-dom';
+import logo from '../images/header-logo.svg';
 
 class Header extends React.Component {
   render() {
