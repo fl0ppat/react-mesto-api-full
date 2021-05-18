@@ -5,6 +5,7 @@ const NotFoundError = require('./errors/NotFound');
 const handleError = require('./middlewares/errors');
 const BadRequestError = require('./errors/BadRequest');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 
@@ -18,6 +19,10 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 });
 
 app.use(express.json());
+app.use(cors({
+  credentials: true, 
+  origin: 'http://localhost:3000'
+}))
 app.use(requestLogger);
 
 app.use(require('./routers/auth'));

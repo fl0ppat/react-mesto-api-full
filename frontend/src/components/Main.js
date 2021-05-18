@@ -6,7 +6,7 @@ function Main(props) {
   const { onEditProfile, onUpdateAvatar, onAddCard, onOpenFull, onCardSelect } = props;
   const currentUser = useContext(CurrentUserContext);
 
-  const [isPreloading, setPreloadingStatement] = useState({
+  const [isPreloading] = useState({
     cards: false,
     profile: false,
   });
@@ -16,8 +16,9 @@ function Main(props) {
   }
 
   function isLiked(cardLikes) {
+    
     return cardLikes.some((like) => {
-      return like._id === currentUser._id;
+      return like === currentUser._id;
     });
   }
 

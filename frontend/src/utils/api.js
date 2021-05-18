@@ -1,4 +1,4 @@
-import { apiAuthData } from "./utils.js";
+import {apiURL} from "./utils.js";
 
 class Api {
   /**
@@ -7,20 +7,22 @@ class Api {
    * @param {string} url Api path
    * @memberof Api
    */
-  constructor(data, url) {
-    this._token = data.token;
-    this._id = data.id;
+  constructor(url) {
     this.deleteCard = this.deleteCard.bind(this);
     this._baseURL = url;
-    this._authURL = "https://auth.nomoreparties.co";
+    this.token = '';
+  }
+
+  setToken(token) {
+    this.token = token;
   }
 
   getInitialCards() {
-    return this._sendRequest("GET", `${this._baseURL + this._id}/cards`).then((res) => this._handleResponseStatus(res));
+    return this._sendRequest("GET", `${this._baseURL}/cards`).then((res) => this._handleResponseStatus(res));
   }
 
   getUserData() {
-    return this._sendRequest("GET", `${this._baseURL + this._id}/users/me`).then((res) =>
+    return this._sendRequest("GET", `${this._baseURL}/users/me`).then((res) =>
       this._handleResponseStatus(res)
     );
   }
@@ -28,7 +30,7 @@ class Api {
   editProfileData(name, about) {
     return this._sendRequest(
       "PATCH",
-      `${this._baseURL + this._id}/users/me`,
+      `${this._baseURL}/users/me`,
       { "Content-Type": "application/json" },
       { name: name, about: about }
     ).then((res) => this._handleResponseStatus(res));
@@ -37,26 +39,26 @@ class Api {
   addNewCard(name, link) {
     return this._sendRequest(
       "POST",
-      `${this._baseURL + this._id}/cards`,
+      `${this._baseURL}/cards`,
       { "Content-Type": "application/json" },
       { name: name, link }
     ).then((res) => this._handleResponseStatus(res));
   }
 
   deleteCard(id) {
-    return this._sendRequest("DELETE", `${this._baseURL + this._id}/cards/${id}`).then((res) =>
+    return this._sendRequest("DELETE", `${this._baseURL}/cards/${id}`).then((res) =>
       this._handleResponseStatus(res)
     );
   }
 
   sendLike(id) {
-    return this._sendRequest("PUT", `${this._baseURL + this._id}/cards/likes/${id}`).then((res) =>
+    return this._sendRequest("PUT", `${this._baseURL}/cards/${id}/likes`).then((res) =>
       this._handleResponseStatus(res)
     );
   }
 
   delLike(id) {
-    return this._sendRequest("DELETE", `${this._baseURL + this._id}/cards/likes/${id}`).then((res) =>
+    return this._sendRequest("DELETE", `${this._baseURL}/cards/${id}/likes`).then((res) =>
       this._handleResponseStatus(res)
     );
   }
@@ -64,28 +66,9 @@ class Api {
   updateAvatar(link) {
     return this._sendRequest(
       "PATCH",
-      `${this._baseURL + this._id}/users/me/avatar`,
+      `${this._baseURL}/users/me/avatar`,
       { "Content-Type": "application/json" },
       { avatar: link }
-    ).then((res) => this._handleResponseStatus(res));
-  }
-
-  registerUser(password, email) {
-    return this._sendRequest(
-      "POST",
-      `${this._authURL}/signup`,
-      { "Content-Type": "application/json" },
-      { password: password, email: email }
-    ).then((res) => this._handleResponseStatus(res));
-  }
-
-  loginUser(password, email) {
-    return this._sendRequest(
-      "POST",
-      `${this._authURL}/signin`,
-      //"https://run.mocky.io/v3/a77cdda3-9ad6-4ccd-b36a-3ff4c4e1f4e7",
-      { "Content-Type": "application/json" },
-      { password: password, email: email }
     ).then((res) => this._handleResponseStatus(res));
   }
 
@@ -119,7 +102,8 @@ class Api {
    */
   _sendRequest(method, url, headers, body) {
     const reqHeader = {
-      authorization: this._token,
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
     };
 
     if (headers && !this._objectIsEmptyOrUndefined(headers)) {
@@ -129,6 +113,7 @@ class Api {
     const fetchData = {
       method: method,
       headers: reqHeader,
+      credentials: 'include'
     };
 
     if (body && !this._objectIsEmptyOrUndefined(body)) {
@@ -137,5 +122,5 @@ class Api {
     return fetch(url, fetchData);
   }
 }
-const api = new Api(apiAuthData, "https://mesto.nomoreparties.co/v1/");
+const api = new Api(apiURL);
 export default api;

@@ -52,7 +52,7 @@ function App() {
       auth
         .getUserData(window.localStorage.getItem("id"))
         .then((res) => {
-          setEmail(res.data.email);
+          setEmail(res.email);
         })
         .catch((err) => console.error(err));
     }
@@ -79,7 +79,7 @@ function App() {
 
   function isLiked(cardLikes) {
     return cardLikes.some((like) => {
-      return like._id === currentUser._id;
+      return like === currentUser._id;
     });
   }
 
@@ -95,7 +95,7 @@ function App() {
   useEffect(() => {
     api
       .getInitialCards()
-      .then((data) => setCards(data))
+      .then((data) => setCards(data.reverse()))
       .catch(() => console.error(`Cards loading Error`));
     //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -150,17 +150,23 @@ function App() {
       .catch(console.error("Ошибка добавления карточки"));
   };
 
-  const getUserAuthData = (token) => auth.getUserData(token).then((res) => setEmail(res.data.email));
+  const getUserAuthData = () => auth.getUserData().then((res) => {
+    setEmail(res.email);
+    setCurrentUser(res)
+  });
   const handleLogin = (password, email) => auth.loginUser(password, email);
   const handleRegister = (password, email) => auth.registerUser(password, email);
   const handleSignOut = () => {
     window.localStorage.removeItem("id");
     setEmail("");
+    closeAllPopups()
     setLoggedIn(false);
+    setCurrentUser({});
   };
   const onLogin = (token) => {
     window.localStorage.setItem("id", token);
-    getUserAuthData(token);
+    getUserAuthData();
+
   };
 
   return (

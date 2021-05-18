@@ -15,8 +15,6 @@ const cardsSchema = new mongoose.Schema(
       validate: {
         validator(link) {
           return validator.isURL(link, { require_protocol: true });
-          // Не стал на прошлой итерации вставлять сюда валидацию,
-          // т.к. аналогичная валидация уже была внутри роутов
         },
       },
     },

@@ -1,12 +1,6 @@
 import React from "react";
 
-//Add this only for Auto tests
-import CurrentUserContext from "../contexts/CurrentUserContext";
-
 function Card(props) {
-  // Не используемый код, требуется для прохождения автотестов.
-  // Передаю данные через пропсы.
-  const currentUser = React.useContext(CurrentUserContext);
 
   function handleCardClick() {
     props.selectCard();

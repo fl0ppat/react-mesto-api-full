@@ -1,3 +1,5 @@
+import {apiURL} from './utils.js'
+
 class Auth {
   /**
    * Creates an instance of Api.
@@ -9,10 +11,9 @@ class Auth {
     this._baseURL = url;
   }
 
-  getUserData(token) {
+  getUserData() {
     return this._sendRequest("GET", `${this._baseURL}/users/me`, {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
     }).then((res) => this._handleResponseStatus(res));
   }
 
@@ -29,7 +30,6 @@ class Auth {
     return this._sendRequest(
       "POST",
       `${this._baseURL}/signin`,
-      //"https://run.mocky.io/v3/a77cdda3-9ad6-4ccd-b36a-3ff4c4e1f4e7",
       { "Content-Type": "application/json" },
       { password: password, email: email }
     ).then((res) => this._handleResponseStatus(res));
@@ -64,7 +64,10 @@ class Auth {
    * @memberof Api
    */
   _sendRequest(method, url, headers, body) {
-    const reqHeader = {};
+    const reqHeader = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    };
 
     if (headers && !this._objectIsEmptyOrUndefined(headers)) {
       Object.assign(reqHeader, headers);
@@ -73,6 +76,7 @@ class Auth {
     const fetchData = {
       method: method,
       headers: reqHeader,
+      credentials: 'include'
     };
 
     if (body && !this._objectIsEmptyOrUndefined(body)) {
@@ -81,5 +85,5 @@ class Auth {
     return fetch(url, fetchData);
   }
 }
-const auth = new Auth("https://auth.nomoreparties.co");
+const auth = new Auth(apiURL);
 export default auth;
