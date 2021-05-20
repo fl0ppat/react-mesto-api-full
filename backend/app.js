@@ -1,12 +1,12 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config()
+require('dotenv').config();
 const { isCelebrateError } = require('celebrate');
+const cors = require('cors');
 const NotFoundError = require('./errors/NotFound');
 const handleError = require('./middlewares/errors');
 const BadRequestError = require('./errors/BadRequest');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
 
 const { PORT = 3000 } = process.env;
 
@@ -21,9 +21,9 @@ mongoose.connect('mongodb://localhost:27017/mestodb', {
 
 app.use(express.json());
 app.use(cors({
-  credentials: true, 
-  origin: 'https://fl0ppat.nomoredomains.club'
-}))
+  credentials: true,
+  origin: 'https://fl0ppat.nomoredomains.club',
+}));
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
